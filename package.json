@@ -1,0 +1,66 @@
+{
+  "name": "bulkhogan-desktop",
+  "version": "1.0.0",
+  "description": "Application desktop Electron pour traiter des questions en masse avec Mistral AI.",
+  "main": "main.js",
+  "author": "BulkHogan Maintainers <noreply@github.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/AnARCHIS12/Bulk-hogan#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnARCHIS12/Bulk-hogan.git"
+  },
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "npm run dist:linux",
+    "dist:linux": "electron-builder --linux AppImage deb rpm",
+    "dist:win": "electron-builder --win nsis",
+    "dist:all": "npm run dist:linux && npm run dist:win"
+  },
+  "build": {
+    "appId": "com.bulkhogan.desktop",
+    "productName": "BulkHogan",
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "files": [
+      "index.html",
+      "main.js",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "icon": "build/icon.png",
+      "category": "Utility",
+      "maintainer": "BulkHogan Maintainers <noreply@github.com>"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^42.2.0",
+    "electron-builder": "^26.8.1"
+  }
+}

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>BulkHogan – Mistral Bulk Processor (Free tier)</title>
+    <title>BulkHogan Desktop – Mistral Bulk Processor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         * {
             box-sizing: border-box;
@@ -67,6 +68,10 @@
             cursor: pointer;
             font-size: 0.9rem;
             transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         button:hover {
             background: #e64a19;
@@ -186,25 +191,46 @@
         .warning {
             color: #e67e22;
         }
+        .icon {
+            color: #ff5722;
+            margin-right: 8px;
+        }
+        .icon-ok {
+            color: #16a34a;
+            margin-right: 6px;
+        }
+        .icon-error {
+            color: #dc2626;
+            margin-right: 6px;
+        }
+        .progress-detail-icon {
+            color: #2563eb;
+            margin-right: 8px;
+        }
+        .delete-btn {
+            width: 34px;
+            height: 30px;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>📦 BulkHogan · Mistral Bulk <span style="font-size:0.8rem;">(Free tier)</span></h1>
-    <p>Traitement par lots de questions avec rotation de modèles, pré‑prompt, stockage local.</p>
+    <h1><i class="fa-solid fa-box-open icon" aria-hidden="true"></i>BulkHogan Desktop · Mistral Bulk <span style="font-size:0.8rem;">(Free tier)</span></h1>
+    <p>Traitement desktop par lots de questions avec rotation de modèles, pré‑prompt, stockage local.</p>
 
     <div class="grid">
         <!-- Colonne gauche : API + préprompt -->
         <div>
-            <h2>🔑 Clé API Mistral</h2>
+            <h2><i class="fa-solid fa-key icon" aria-hidden="true"></i>Clé API Mistral</h2>
             <div class="form-group">
                 <label>Clé (sans "sk-", ex: 5qaRTjWrezar7y6yy66gbH8Rake)</label>
                 <input type="password" id="apiKeyInput" placeholder="Votre clé free tier" autocomplete="off">
-                <button id="saveApiKeyBtn" style="margin-top:8px; width:100%;">💾 Sauvegarder la clé (localStorage)</button>
+                <button id="saveApiKeyBtn" style="margin-top:8px; width:100%;"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>Sauvegarder la clé (localStorage)</button>
                 <div id="apiStatus" class="status-box"></div>
             </div>
             <div class="form-group">
-                <label>🧠 Pré‑prompt système (optionnel)</label>
+                <label><i class="fa-solid fa-brain icon" aria-hidden="true"></i>Pré‑prompt système (optionnel)</label>
                 <textarea id="systemPrompt" rows="3" placeholder="Exemple : Tu es un assistant précis et concis. Réponds toujours en français, max 100 mots."></textarea>
                 <small>Ces instructions seront ajoutées à chaque requête.</small>
             </div>
@@ -212,18 +238,18 @@
 
         <!-- Colonne droite : modèles -->
         <div>
-            <h2>🤖 Modèles disponibles (rotation)</h2>
+            <h2><i class="fa-solid fa-microchip icon" aria-hidden="true"></i>Modèles disponibles (rotation)</h2>
             <div class="agents-list" id="agentsContainer">
                 <!-- Généré dynamiquement -->
                 <div style="padding: 10px;">Chargement des modèles...</div>
             </div>
-            <p><small>✔ Cochez plusieurs modèles → rotation cyclique.<br>❌ Seuls les modèles fonctionnels (statut OK) sont listés.</small></p>
+            <p><small><i class="fa-solid fa-check icon-ok" aria-hidden="true"></i>Cochez plusieurs modèles → rotation cyclique.<br><i class="fa-solid fa-xmark icon-error" aria-hidden="true"></i>Seuls les modèles fonctionnels (statut OK) sont listés.</small></p>
         </div>
     </div>
 
     <hr>
 
-    <h2>📝 Questions (bulk)</h2>
+    <h2><i class="fa-solid fa-pen-to-square icon" aria-hidden="true"></i>Questions (bulk)</h2>
     <div class="form-group">
         <textarea id="questionInput" rows="6" placeholder="Une question par ligne :&#10;Quelle est la capitale de la France ?&#10;Explique le théorème de Pythagore&#10;Donne une recette de pancakes"></textarea>
     </div>
@@ -232,8 +258,8 @@
             <input type="file" id="fileInput" accept=".txt,.csv">
         </div>
         <div>
-            <button id="btnStart">🚀 Lancer le traitement</button>
-            <button id="btnStop" class="btn-stop" disabled>⏹️ Arrêter</button>
+            <button id="btnStart"><i class="fa-solid fa-play" aria-hidden="true"></i>Lancer le traitement</button>
+            <button id="btnStop" class="btn-stop" disabled><i class="fa-solid fa-stop" aria-hidden="true"></i>Arrêter</button>
         </div>
     </div>
 
@@ -248,8 +274,8 @@
     </div>
 
     <div class="flex-between">
-        <h2>📋 Historique des réponses</h2>
-        <button id="clearDbBtn" class="btn-clear">🗑️ Effacer tout</button>
+        <h2><i class="fa-solid fa-table-list icon" aria-hidden="true"></i>Historique des réponses</h2>
+        <button id="clearDbBtn" class="btn-clear"><i class="fa-solid fa-trash-can" aria-hidden="true"></i>Effacer tout</button>
     </div>
     <div class="table-container">
         <table id="resultsTable">
@@ -422,10 +448,12 @@
             row.insertCell(3).textContent = new Date(item.date).toLocaleString();
             const delCell = row.insertCell(4);
             const delBtn = document.createElement('button');
-            delBtn.textContent = '✖';
+            delBtn.innerHTML = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+            delBtn.title = 'Supprimer cette réponse';
+            delBtn.setAttribute('aria-label', 'Supprimer cette réponse');
+            delBtn.className = 'delete-btn';
             delBtn.style.background = '#e2e8f0';
             delBtn.style.color = '#1e293b';
-            delBtn.style.padding = '4px 12px';
             delBtn.onclick = async () => {
                 if (confirm('Supprimer cette réponse ?')) {
                     await deleteResponse(item.id);
@@ -494,10 +522,22 @@
         }, 4000);
     }
 
+    function setProgressDetail(iconClass, text) {
+        const detail = document.getElementById('progressDetail');
+        detail.replaceChildren();
+        if (iconClass) {
+            const icon = document.createElement('i');
+            icon.className = `fa-solid ${iconClass} progress-detail-icon`;
+            icon.setAttribute('aria-hidden', 'true');
+            detail.appendChild(icon);
+        }
+        detail.appendChild(document.createTextNode(text));
+    }
+
     async function handleSaveApiKey() {
         const key = document.getElementById('apiKeyInput').value.trim();
         if (!key) {
-            showApiStatus('❌ Entrez une clé API valide.', 'error');
+            showApiStatus('Entrez une clé API valide.', 'error');
             return;
         }
         // Test rapide (optionnel) pour vérifier que la clé est acceptée par Mistral
@@ -514,10 +554,10 @@
                 throw new Error(`HTTP ${res.status}`);
             }
             saveApiKeyToLocalStorage(key);
-            showApiStatus('✅ Clé sauvegardée et valide !', 'success');
+            showApiStatus('Clé sauvegardée et valide !', 'success');
         } catch (err) {
             console.warn(err);
-            showApiStatus(`⚠️ La clé semble invalide ou problème réseau: ${err.message}. Sauvegardée quand même.`, 'error');
+            showApiStatus(`La clé semble invalide ou problème réseau: ${err.message}. Sauvegardée quand même.`, 'error');
             // On sauvegarde quand même pour permettre des essais
             saveApiKeyToLocalStorage(key);
         }
@@ -527,7 +567,7 @@
     async function startBulkProcess() {
         const apiKey = getApiKeyFromLocalStorage();
         if (!apiKey) {
-            alert('❌ Aucune clé API. Enregistrez-la d\'abord.');
+            alert('Aucune clé API. Enregistrez-la d\'abord.');
             return;
         }
         if (selectedModels.length === 0) {
@@ -563,7 +603,7 @@
     async function processNextQuestion(apiKey) {
         if (!isProcessing) return;
         if (currentIdx >= questionsQueue.length) {
-            finishBulk('✅ Traitement terminé !');
+            finishBulk('Traitement terminé !', 'fa-circle-check');
             return;
         }
 
@@ -571,7 +611,7 @@
         const model = selectedModels[currentIdx % selectedModels.length];
         const systemPrompt = document.getElementById('systemPrompt').value.trim();
 
-        document.getElementById('progressDetail').innerHTML = `🔍 Question ${currentIdx+1}/${questionsQueue.length} : "${question.substring(0, 60)}..."`;
+        setProgressDetail('fa-magnifying-glass', `Question ${currentIdx+1}/${questionsQueue.length} : "${question.substring(0, 60)}..."`);
 
         // Vérifier doublon
         const qHash = await hashQuestion(question);
@@ -633,14 +673,14 @@
             } else if (err.message.includes('401')) {
                 answer = 'ERREUR: Clé API invalide. Arrêt du traitement.';
                 stopBulkProcess();
-                showApiStatus('⛔ Clé API rejetée (401). Arrêt.', 'error');
+                showApiStatus('Clé API rejetée (401). Arrêt.', 'error');
                 await saveResponse(question, answer, 'AUTH_ERROR', qHash);
                 await renderResultsTable();
                 return;
             } else if (err.message.includes('429')) {
                 is429 = true;
                 answer = 'Rate limit - attente...';
-                showApiStatus('⏳ Limite de débit (429). Pause 6 secondes...', 'info');
+                showApiStatus('Limite de débit (429). Pause 6 secondes...', 'info');
                 await new Promise(r => setTimeout(r, 6000));
                 // on ne sauvegarde pas l'erreur, on réessaie la même question
                 setTimeout(() => processNextQuestion(apiKey), 100);
@@ -672,17 +712,17 @@
         document.getElementById('btnStart').disabled = false;
         document.getElementById('btnStop').disabled = true;
         document.getElementById('questionInput').disabled = false;
-        document.getElementById('progressDetail').innerHTML = '⏸️ Arrêté par l\'utilisateur.';
+        setProgressDetail('fa-pause', 'Arrêté par l\'utilisateur.');
         showApiStatus('Traitement interrompu.', 'info');
     }
 
-    function finishBulk(message) {
+    function finishBulk(message, iconClass = 'fa-circle-check') {
         isProcessing = false;
         abortController = null;
         document.getElementById('btnStart').disabled = false;
         document.getElementById('btnStop').disabled = true;
         document.getElementById('questionInput').disabled = false;
-        document.getElementById('progressDetail').innerHTML = message;
+        setProgressDetail(iconClass, message);
         showApiStatus(message, 'success');
     }
 
@@ -691,9 +731,9 @@
         const fill = document.getElementById('progressFill');
         fill.style.width = percent + '%';
         fill.textContent = percent + '%';
-        document.getElementById('statsCounter').innerHTML = `${current} / ${total}`;
+        document.getElementById('statsCounter').textContent = `${current} / ${total}`;
         if (current === total && total > 0) {
-            document.getElementById('progressDetail').innerHTML = '🎉 Terminé !';
+            setProgressDetail('fa-circle-check', 'Terminé !');
         }
     }
 
@@ -708,7 +748,7 @@
     }
 
     async function handleClearDatabase() {
-        if (!confirm('⚠️ Supprimer définitivement TOUS les résultats ?')) return;
+        if (!confirm('Supprimer définitivement TOUS les résultats ?')) return;
         await clearAllResponses();
         await renderResultsTable();
         showApiStatus('Base de données effacée.', 'success');
