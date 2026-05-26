@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="build/icon.svg" width="128" alt="BulkHogan logo">
+  <img src="build/icon.png" width="128" alt="BulkHogan logo">
 </p>
 
 # BulkHogan Desktop

@@ -27,9 +27,13 @@
       "buildResources": "build",
       "output": "dist"
     },
+    "asarUnpack": [
+      "build/icon.png"
+    ],
     "files": [
       "index.html",
       "main.js",
+      "build/icon.png",
       "package.json"
     ],
     "linux": {
