@@ -2114,7 +2114,7 @@ const MODELS = [
 ];
 
 const DB_NAME = "THE_VOANH_AI_DB";
-const DB_VERSION = 3;
+const DB_VERSION = 4; // Incremented for bulk feature
 
 let state = {
   apiKey: null,
@@ -2186,7 +2186,7 @@ const db = {
     const req = indexedDB.open(DB_NAME, DB_VERSION);
     req.onupgradeneeded = e => {
       const d = e.target.result;
-      ['chats','agents','settings','global_memory'].forEach(s => {
+      ['chats','agents','settings','global_memory','bulk_sessions'].forEach(s => {
         if (!d.objectStoreNames.contains(s)) d.createObjectStore(s, { keyPath:'id' });
       });
     };
