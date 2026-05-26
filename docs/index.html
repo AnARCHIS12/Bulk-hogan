@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BulkHogan Desktop - Telechargements</title>
+  <meta name="description" content="Telechargez BulkHogan Desktop pour Linux et Windows.">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #172033;
+      background: #f4f7fc;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .hero {
+      min-height: 82vh;
+      display: grid;
+      align-items: center;
+      padding: 56px 24px 36px;
+      background:
+        linear-gradient(135deg, rgba(255, 87, 34, 0.12), rgba(15, 23, 42, 0.06)),
+        #f4f7fc;
+    }
+
+    .wrap {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: #172033;
+      text-decoration: none;
+      font-size: 0.94rem;
+      font-weight: 700;
+      padding: 9px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      gap: 44px;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(2.5rem, 6vw, 5.2rem);
+      line-height: 0.94;
+      letter-spacing: 0;
+      color: #0f172a;
+    }
+
+    .lead {
+      max-width: 680px;
+      margin: 24px 0 0;
+      color: #475569;
+      font-size: 1.16rem;
+      line-height: 1.65;
+    }
+
+    .quick {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      color: #fff;
+      background: #ff5722;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 16px 28px rgba(255, 87, 34, 0.24);
+    }
+
+    .button.secondary {
+      color: #172033;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      box-shadow: none;
+    }
+
+    .logo-card {
+      display: grid;
+      place-items: center;
+      min-height: 360px;
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 18px 48px rgba(15, 23, 42, 0.12);
+    }
+
+    .logo-card img {
+      width: 212px;
+      height: 212px;
+    }
+
+    .downloads {
+      padding: 44px 24px 72px;
+      background: #ffffff;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      color: #0f172a;
+      font-size: 1.7rem;
+      letter-spacing: 0;
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .download {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 160px;
+      padding: 18px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #f8fafc;
+      text-decoration: none;
+      color: #172033;
+    }
+
+    .download strong {
+      display: block;
+      font-size: 1.04rem;
+      margin-bottom: 8px;
+    }
+
+    .download span {
+      color: #64748b;
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    .download b {
+      margin-top: 18px;
+      color: #ff5722;
+      font-size: 0.94rem;
+    }
+
+    .note {
+      margin-top: 20px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .logo-card {
+        min-height: 240px;
+      }
+
+      .logo-card img {
+        width: 156px;
+        height: 156px;
+      }
+
+      .download-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topline {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <div class="wrap">
+      <div class="topline">
+        <div class="brand">
+          <img src="icon.svg" alt="">
+          <span>BulkHogan Desktop</span>
+        </div>
+        <nav class="nav" aria-label="Liens projet">
+          <a href="https://github.com/AnARCHIS12/Bulk-hogan">GitHub</a>
+          <a href="https://github.com/AnARCHIS12/Bulk-hogan/releases/latest">Release</a>
+        </nav>
+      </div>
+
+      <div class="hero-grid">
+        <section>
+          <h1>Traitement Mistral en masse, maintenant en desktop.</h1>
+          <p class="lead">BulkHogan Desktop lance des lots de questions dans une fenetre native Electron, avec rotation des modeles, historique local et installateurs prets pour Linux et Windows.</p>
+          <div class="quick">
+            <a class="button" href="#telechargements">Telecharger</a>
+            <a class="button secondary" href="https://github.com/AnARCHIS12/Bulk-hogan/releases/latest">Voir la release</a>
+          </div>
+        </section>
+        <aside class="logo-card" aria-label="Logo BulkHogan">
+          <img src="icon.svg" alt="BulkHogan">
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <section class="downloads" id="telechargements">
+    <div class="wrap">
+      <h2>Telechargements directs</h2>
+      <div class="download-grid">
+        <a class="download" href="https://github.com/AnARCHIS12/Bulk-hogan/releases/download/v1.0.0/BulkHogan-1.0.0-linux-x86_64.AppImage">
+          <strong>Linux AppImage</strong>
+          <span>Version portable pour la plupart des distributions Linux.</span>
+          <b>Telecharger .AppImage</b>
+        </a>
+        <a class="download" href="https://github.com/AnARCHIS12/Bulk-hogan/releases/download/v1.0.0/BulkHogan-1.0.0-linux-amd64.deb">
+          <strong>Debian / Ubuntu</strong>
+          <span>Paquet pour Ubuntu, Debian et distributions compatibles.</span>
+          <b>Telecharger .deb</b>
+        </a>
+        <a class="download" href="https://github.com/AnARCHIS12/Bulk-hogan/releases/download/v1.0.0/BulkHogan-1.0.0-linux-x86_64.rpm">
+          <strong>Fedora / RHEL</strong>
+          <span>Paquet pour Fedora, RHEL et distributions compatibles.</span>
+          <b>Telecharger .rpm</b>
+        </a>
+        <a class="download" href="https://github.com/AnARCHIS12/Bulk-hogan/releases/download/v1.0.0/BulkHogan-1.0.0-win-x64.exe">
+          <strong>Windows</strong>
+          <span>Installeur Windows 64 bits genere avec Electron Builder.</span>
+          <b>Telecharger .exe</b>
+        </a>
+      </div>
+      <p class="note">Tous les fichiers viennent de la release officielle GitHub v1.0.0.</p>
+    </div>
+  </section>
+</body>
+</html>

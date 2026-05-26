@@ -15,8 +15,8 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "npm run dist:linux",
-    "dist:linux": "electron-builder --linux AppImage deb rpm",
-    "dist:win": "electron-builder --win nsis",
+    "dist:linux": "electron-builder --linux AppImage deb rpm --publish never",
+    "dist:win": "electron-builder --win nsis --publish never",
     "dist:all": "npm run dist:linux && npm run dist:win"
   },
   "build": {

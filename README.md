@@ -16,7 +16,11 @@ BulkHogan Desktop est une application Electron pour traiter en masse des questio
 
 ## Télécharger
 
-Les installateurs sont publiés dans la dernière release GitHub :
+Page de téléchargement :
+
+https://anarchis12.github.io/Bulk-hogan/
+
+Les installateurs sont aussi publiés dans la dernière release GitHub :
 
 https://github.com/AnARCHIS12/Bulk-hogan/releases/latest
 
